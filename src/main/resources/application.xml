@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="producer" class="org.study.mq.rocketmq.spring.SpringProducer" init-method="init" destroy-method="destrory">
+        <constructor-arg name="nameServerAddr" value="localhost:9876"/>
+        <constructor-arg name="producerGroupName" value="spring_producer_group"/>
+    </bean>
+
+    <bean id="messageListener" class="org.study.mq.rocketmq.spring.MessageListener"/>
+
+    <bean id="consumer" class="org.study.mq.rocketmq.spring.SpringConsumer" init-method="init" destroy-method="destory">
+        <constructor-arg name="nameServerAddr" value="localhost:9876"/>
+        <constructor-arg name="consumerGroupName" value="spring_consumer_group"/>
+        <constructor-arg name="topicName" value="spring-rocketMQ-topic"/>
+        <constructor-arg name="messageListener" ref="messageListener"/>
+    </bean>
+</beans>
