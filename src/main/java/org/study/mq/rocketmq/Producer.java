@@ -25,8 +25,8 @@ public class Producer {
 
         for (int i = 0; i < 100; i++) {
             // 创建一个消息对象，指定其主体、标签和消息内容
-            Message msg = new Message("topic_example_java",
-                    "TagA",
+            Message msg = new Message("topic_example_java", // 消息主题名
+                    "TagA", // 消息标签
                     ("Hello Java demo RockerMQ" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
 
             // 发送消息并返回结果

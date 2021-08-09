@@ -2,6 +2,7 @@ package org.study.mq.rocketmq.spring;
 
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
+import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,11 +15,12 @@ import java.util.List;
  * @Description
  * @create 2019/5/24
  */
-public class MessageListener {
+public class MessageListener implements MessageListenerConcurrently {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    public ConsumeConcurrentlyStatus consumerMessage(List<MessageExt> list, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
+    @Override
+    public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> list, ConsumeConcurrentlyContext consumeConcurrentlyContext) {
         if (list != null) {
             for (MessageExt ext : list) {
                 try {
