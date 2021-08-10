@@ -71,7 +71,7 @@ public class TransactionProducer {
 
         producer.start();
 
-        // 为了演示事务成功和失败的效果，发送两条消息，根据消息的tag 分别演示
+        // 为了演示事务成功和失败的效果，发送两条消息，根据消息的tag 分别演示事务成功和事务失败
         for (int i = 0; i < 2; i++) {
             Message message = new Message("TopicTransaction", "Transaction" + i,
                     ("Hello RocketMq distribution transaction" + i).getBytes());
